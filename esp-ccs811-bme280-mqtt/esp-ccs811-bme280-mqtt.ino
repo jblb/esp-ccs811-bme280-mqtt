@@ -82,6 +82,15 @@ void setup() {
 
   pinMode(LED_BUILTIN, OUTPUT);
 
+  // reset sensor
+  pinMode(RST_PIN, OUTPUT);             // set RST pin as OUTPUT
+  digitalWrite(RST_PIN, LOW);
+  delay(1);
+  digitalWrite(RST_PIN, HIGH);
+  // wake_up sensor
+  pinMode(WAKE_PIN, OUTPUT);   // set WAKE pin as OUTPUT
+  digitalWrite(WAKE_PIN, LOW);  // WAKE_PIN on the sensor is active low, must always be asserted before any communication and held low throughout
+
   //put in mqtt prefix
   sprintf(mqttTopicStatus, "%sstatus", mqttTopicPrefix);
   sprintf(mqttTopicIp, "%sip", mqttTopicPrefix);

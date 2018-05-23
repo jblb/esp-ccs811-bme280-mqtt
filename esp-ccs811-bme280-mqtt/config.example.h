@@ -47,4 +47,4 @@ const char* mqttTopicPrefix = "<mqtt-topic-prefix>";
  * WAKE_PIN: Digial Pin Number, where your BME280s wake signal is connected
  */
 #define WAKE_PIN 15
-
+#define RST_PIN 12
