@@ -112,7 +112,7 @@ void setup() {
 
   //Initialize BME280
   myBME280.settings.commInterface = I2C_MODE;
-  myBME280.settings.I2CAddress = 0x77;
+  myBME280.settings.I2CAddress = 0x76; // 0x77
   myBME280.settings.runMode = 3; //Normal mode
   myBME280.settings.tStandby = 0;
   myBME280.settings.filter = 4;
