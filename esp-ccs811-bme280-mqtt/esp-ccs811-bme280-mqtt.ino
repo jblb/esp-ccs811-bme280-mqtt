@@ -8,9 +8,9 @@
   Sparkfun BME280 from https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library
   Tasker from https://github.com/sticilface/Tasker
 
-  Connect the sensors via I2C, (SDA -> GPIO4 / SCL -> GPIO5). Don't forget 
-  the I2C Pull-Ups. 
-  The used Adafruit CCS811 library expects I2C address 0x5A, so configure your 
+  Connect the sensors via I2C, (SDA -> GPIO4 (D2)/ SCL -> GPIO5(D1)). Don't forget
+  the I2C Pull-Ups.
+  The used Adafruit CCS811 library expects I2C address 0x5A, so configure your
   CCS811 accordingly.
   !WAKE is currently not used.
   Serial is left open for debugging (115200).
@@ -26,8 +26,8 @@
    <mqttTopicPrefix>co2             CO2 concentration in ppm
    <mqttTopicPrefix>tvoc            total volatile compound in ppb
 
-  If you want to read Farenheit/Feet change readTempC() to readTempF() and 
-  readFloatAltitudeMeters() to readFloatAltitudeFeet(). 
+  If you want to read Farenheit/Feet change readTempC() to readTempF() and
+  readFloatAltitudeMeters() to readFloatAltitudeFeet().
   ccs811.setEnvironmentalData() expects the temperature as °C
 
   ArduinoOTA is enabled, the mqttClientName is used as OTA name, see config.
@@ -92,7 +92,7 @@ void setup() {
   sprintf(mqttTopicCO2, "%sco2", mqttTopicPrefix);
   sprintf(mqttTopicTVOC, "%stvoc", mqttTopicPrefix);
 
-  
+
   if (!ccs811.begin()) {
     Serial.println("CCS811 Initialization failed.");
     while (1);
@@ -217,8 +217,8 @@ void meassureEnvironment(int) {
   Serial.print(bme280Humidity);
   Serial.println(" %");
 
-  
-  ccs811.setEnvironmentalData(bme280Humidity, bme280TemperatureC); 
+
+  ccs811.setEnvironmentalData(bme280Humidity, bme280TemperatureC);
   //wait for ccs811 reading
   while(ccs811.readData());
 
@@ -233,7 +233,7 @@ void meassureEnvironment(int) {
   Serial.print(ccs811tvoc);
   Serial.println(" ppb");
 
-  
+
   char buf[8] = "";
   sprintf(buf, "%f", bme280TemperatureC);
   mqttClient.publish(mqttTopicTemperatureC, buf, true);
@@ -252,7 +252,7 @@ void meassureEnvironment(int) {
 
   sprintf(buf, "%d", ccs811tvoc);
   mqttClient.publish(mqttTopicTVOC, buf, true);
-  
+
 
   Serial.println();
 }
