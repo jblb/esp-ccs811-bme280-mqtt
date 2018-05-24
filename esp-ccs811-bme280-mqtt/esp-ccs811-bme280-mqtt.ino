@@ -78,7 +78,7 @@ uint16_t ccs811tvoc;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Starting up...");
+  Serial.println("\nStarting up...");
 
   pinMode(LED_BUILTIN, OUTPUT);
 
@@ -215,7 +215,7 @@ void meassureEnvironment(int) {
   Serial.println(" *C");
 
   Serial.print("Pressure = ");
-  Serial.print(bme280Pressure);
+  Serial.printf("%.0f", bme280Pressure/100);
   Serial.println(" hPa");
 
   Serial.print("Approx. Altitude = ");
